@@ -1,4 +1,5 @@
 const map: Record<number | string, number> = {
+  0: 0,
   1: 1,
   2: 2,
   3: 3,
@@ -24,13 +25,17 @@ function hex2binary(hex: string) {
   for (let i = 0; i < hex.length; i++) {
     const n = hex[i].toLocaleLowerCase();
 
-    rs += map[n].toString(2);
-  }
+    let temp = map[n].toString(2);
 
+    temp = "0".repeat(4 - temp.length) + temp;
+
+    rs += temp;
+  }
+  console.log(rs.length);
   return rs;
 }
 
-console.log("16 to 2", hex2binary("ox8f7a93"));
+// console.log("16 to 2", hex2binary("0X8f7a93"));
 
 function binary2hex(binary: string) {
   let len = binary.length;
@@ -51,4 +56,97 @@ function binary2hex(binary: string) {
   return rs;
 }
 
-console.log("2 to 16", binary2hex("1011011110011100"));
+// console.log("2 to 16", binary2hex("1011011110011100"));
+
+function decimal2binary(dec: number) {
+  let rs = "";
+
+  do {
+    let remainder = dec % 2;
+    rs = remainder + rs;
+
+    dec = Math.floor(dec / 2);
+  } while (dec !== 0);
+
+  return rs;
+}
+
+function demical2hex(dec: number) {
+  let rs = "";
+
+  do {
+    let remainder = dec % 16;
+    rs = remainder + rs;
+
+    dec = Math.floor(dec / 16);
+  } while (dec !== 0);
+
+  return "0x" + rs;
+}
+
+// console.log(demical2hex(188));
+
+// let str = "[[1,2],[3,4]]";
+
+// const reg1 = /\d+/;
+// const reg2 = /(?<=,)\d+/;
+// const reg3 = /(?<=,\[)\d+/;
+// const reg4 = /\d+(?=\]\])/;
+
+// console.log(str.replace(reg3, "0"));
+
+function hex2decimal(hex: number) {
+  let rs = 0;
+  let hexS = hex.toString(16);
+
+  let i = hexS.length - 1;
+  let n = 0;
+
+  while (i >= 0) {
+    rs += map[hexS[i].toLocaleLowerCase()] * Math.pow(16, n);
+    n++;
+    i--;
+  }
+
+  return rs;
+}
+
+// console.log(hex2decimal(0x12));
+
+function pow2hex(n: number) {
+  const map: Record<number, number> = {
+    0: 1,
+    1: 2,
+    2: 4,
+    3: 8,
+  };
+
+  const remainder = n % 4;
+
+  const time = Math.floor(n / 4);
+
+  return "0x" + map[remainder] + "0".repeat(time);
+}
+
+function anwer(n?: number, demical?: number, hex?: string) {
+  if (n) {
+    return [n, Math.pow(2, n), pow2hex(n)];
+  } else if (demical) {
+    const binary = decimal2binary(demical);
+    n = binary.length - 1;
+
+    return [n, demical, pow2hex(n)];
+  } else if (hex) {
+    let temp = hex.slice(2);
+
+    n = decimal2binary(Number(temp[0])).length - 1 + (temp.length - 1) * 4;
+
+    return [n, Math.pow(2, n), hex];
+  }
+
+  throw new Error("请传递至少一个参数");
+}
+
+// console.log(anwer(undefined, undefined, "0x10000"));
+
+console.log(hex2binary("0x00359141"));
