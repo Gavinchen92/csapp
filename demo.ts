@@ -149,4 +149,9 @@ function anwer(n?: number, demical?: number, hex?: string) {
 
 // console.log(anwer(undefined, undefined, "0x10000"));
 
-console.log(hex2binary("0x00359141"));
+console.log(
+  hex2binary("0xc3"),
+  hex2binary("0x75"),
+  hex2binary("0x87"),
+  hex2binary("0x66")
+);
