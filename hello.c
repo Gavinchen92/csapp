@@ -96,6 +96,35 @@ float sum_element(float a[], unsigned len) {
   return rs;
 }
 
+int uadd_ok(unsigned x, unsigned y) {
+  int sum = x + y;
+
+  if (x > sum)
+  {
+    return 0;
+  }
+  
+  return 1;
+}
+
+int tadd_ok(int x, int y) {
+  int sum = x + y;
+
+  if (x >= 0 && y >= 0 && sum < 0)
+  {
+    return 0;
+  } else if (x< 0 && y < 0 && sum >= 0)
+  {
+    return 0;
+  }
+  
+  return 1;
+}
+
+int tsub_ok(int x, int y) {
+  
+}
+
 int main()
 {
   // show_int(12345);
@@ -117,13 +146,9 @@ int main()
 
   // int c = bool_xor(a,b);
 
-  
-  char s = 'a';
-  char t = 'x';
+  int x = uadd_ok(0x000000ff, 0x000000ff);
 
-  int b = strlonger(&s, &t);
-
-  printf( "rs is %d", b);
+  printf( "rs is %d", x);
 
   return 0;
 }
