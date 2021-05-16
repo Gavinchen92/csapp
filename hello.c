@@ -96,34 +96,38 @@ float sum_element(float a[], unsigned len) {
   return rs;
 }
 
+int div16(int32_t x) {
+  int bias = x >> 31 & 0xf;
+  return x + bias >> 4;
+}
+
+int show_short(short s) {
+  show_bytes((byte_pointer) &s, sizeof(short));
+}
+
+int show_long(long l) {
+  show_bytes((byte_pointer) &l, sizeof(long));
+}
+
+int is_little_endian () {
+  short i = 1;
+
+  byte_pointer b = (byte_pointer) &i;
+
+  int rs = b[0] == 0x00 ? 0 : 1;
+
+  printf("%.2x", b[0]);
+
+  printf("%d", rs);
+}
+
+unsigned replace_byte(unsigned x, int i, unsigned char b) {
+  return (x & ~(0xFF<<(i*8))) | (b << (i*8));
+}
+
 int main()
 {
-  // show_int(12345);
-  // show_float(12345.0);
-  // int a = 0x87654321;
-  // byte_pointer valp = (byte_pointer) &a;
-  // show_bytes(valp, 3);
+  unsigned x = replace_byte(0x12345678, 2, 0xab);
 
-  // const char *s = "abcdef";
-  // show_bytes((byte_pointer) s, strlen(s));
-
-
-  // int a[] = {1,2,3,4,5};
-
-  // reverse_array(a, 5);
-
-  // int a = 0b00111;
-  // int b = 0b01001;
-
-  // int c = bool_xor(a,b);
-
-  
-  char s = 'a';
-  char t = 'x';
-
-  int b = strlonger(&s, &t);
-
-  printf( "rs is %d", b);
-
-  return 0;
+  printf("%x", x);
 }
