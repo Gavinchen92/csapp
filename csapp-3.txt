@@ -1,0 +1,9 @@
+%rax                  0x100
+0x104                 0xab
+$0x108                0x108
+(%rax)                0xff
+4(%rax)               0xab
+9(%rax, %rdx)         0x11
+260(%rcx, %rdx)       0x13
+0xfc(,%rcx, 4)        0xff
+(%rax, %rdx, 4)       0x11
