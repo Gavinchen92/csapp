@@ -7,3 +7,40 @@ $0x108                0x108
 260(%rcx, %rdx)       0x13
 0xfc(,%rcx, 4)        0xff
 (%rax, %rdx, 4)       0x11
+
+
+movl
+movw
+movb
+movb
+movq
+movw
+
+3.3
+字节数不够
+超出
+不能直接从内存复制到内存
+%sl地址不存在
+不能复制到绝对数值
+des过大
+超出
+
+3.4
+movbl (%rdi), %eax
+movl %eax, (%rsi)
+
+movsbl (%rdi), %eax
+movl %eax, (%rsi)
+
+movzbl (%rdi), %eax
+movq %rax, (%rsi)
+
+movl (%rdi), %eax
+movb %al, (%rsi)
+
+movl (%rdi), %eax
+movb %al, (%rsi)
+
+movsbw (%rdi), %ax
+movw %ax, (%rsi)
+
