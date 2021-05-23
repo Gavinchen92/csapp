@@ -136,3 +136,31 @@ D ->
 00010  00101     7         7
 01100  00100     16        -16
  
+3.8
+0x100    0x100
+0x108    0xA8
+0x118    0x110
+0x110    0x14
+0x1      0x0
+0x100    0xfd
+
+3.9
+salq $0x4, %rax
+
+sarq  %esi, %rax
+
+3.11
+A: 赋值0
+B: movq $0, %rdx
+C: 
+
+3.12
+uremdiv
+movq  %rdx, %r8
+movq  %rdi, %rax
+movl  $0, %edx
+cqto
+divq  %rsi
+movq  %rax, (%r8)
+movq  %rdx, (%rcx)
+ret

@@ -44,3 +44,29 @@ movb %al, (%rsi)
 movsbw (%rdi), %ax
 movw %ax, (%rsi)
 
+3.6
+x + 6
+x + y
+x + 4y
+9x + 7
+4y + 10
+x + 2y + 9
+
+3.13
+A. int
+B. short
+C. unsigned char
+D. long, unsigned long
+
+3.14
+A. long 
+B. short, unsigned short
+C. unsigned char
+D. int
+
+3.15
+A. 4003fc
+B. 400431
+C. 400545, 400547
+D. 4005ed
+
